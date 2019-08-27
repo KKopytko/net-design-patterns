@@ -33,7 +33,7 @@ namespace Patterns
                     Console.WriteLine($"{example.Key}) {example.Value.Name}");
                 }
 
-                Console.Write("\nWybierz przyklad: ");
+                Console.Write("\nSelect example: ");
                 choice = Console.ReadKey(true);
                 if (choice.Key == ConsoleKey.Escape)
                 {
@@ -51,7 +51,7 @@ namespace Patterns
                 Console.WriteLine($"=== {selectedExample.Name} ===\n");
                 selectedExample.Run();
 
-                Console.WriteLine("\n\nKoniec wykonania. Wcisnij przycisk by powrocic do Menu.");
+                Console.WriteLine("\n\nEnd of run. Press any key to return to menu.");
                 choice = Console.ReadKey(true);
             } while(choice.Key != ConsoleKey.Escape);
         }

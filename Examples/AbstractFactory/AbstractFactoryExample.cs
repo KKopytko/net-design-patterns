@@ -1,10 +1,8 @@
-using System;
-
 namespace Patterns.Examples.AbstractFactory
 {
     class AbstractFactoryExample : IRunnableExample
     {
-        public string Name => "Fabryka abstrakcyjna";
+        public string Name => "Abstract factory";
 
         public void Run()
         {
