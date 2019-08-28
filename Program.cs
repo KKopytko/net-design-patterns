@@ -27,33 +27,59 @@ namespace Patterns
             ConsoleKeyInfo choice;
             do
             {
-                Console.Clear();
-                foreach(var example in examples)
-                {
-                    Console.WriteLine($"{example.Key}) {example.Value.Name}");
-                }
+                PresentListOfExamples();
 
-                Console.Write("\nSelect example: ");
-                choice = Console.ReadKey(true);
-                if (choice.Key == ConsoleKey.Escape)
+                choice = PromptPickKey("Select example: ");
+                if (ShouldBreak(choice))
                 {
                     break;
                 }
 
-                var intChoice = (int)char.GetNumericValue(choice.KeyChar);
-                IRunnableExample selectedExample;
-                if (!examples.TryGetValue(intChoice, out selectedExample))
+                if (!GetExample(choice, out var selectedExample))
                 {
                     continue;
                 }
 
-                Console.Clear();
-                Console.WriteLine($"=== {selectedExample.Name} ===\n");
-                selectedExample.Run();
+                RunExample(selectedExample);
 
-                Console.WriteLine("\n\nEnd of run. Press any key to return to menu.");
-                choice = Console.ReadKey(true);
-            } while(choice.Key != ConsoleKey.Escape);
+                choice = PromptPickKey("\nEnd of run. Press any key to return to menu.");
+            } while (!ShouldBreak(choice));
+        }
+
+        private static void PresentListOfExamples()
+        {
+            Console.Clear();
+            foreach(var example in examples)
+            {
+                Console.WriteLine($"{example.Key}) {example.Value.Name}");
+            }
+            Console.WriteLine("ESC) Exit");
+        }
+
+        private static ConsoleKeyInfo PromptPickKey(string title)
+        {
+            Console.Write($"\n{title}");
+
+            return Console.ReadKey(true);
+        }
+
+        private static bool GetExample(ConsoleKeyInfo choice, out IRunnableExample example)
+        {
+            var intChoice = (int)char.GetNumericValue(choice.KeyChar);
+            
+            return examples.TryGetValue(intChoice, out example);
+        }
+
+        private static void RunExample(IRunnableExample example)
+        {
+            Console.Clear();
+            Console.WriteLine($"=== {example.Name} ===\n");
+            example.Run();
+        }
+
+        private static bool ShouldBreak(ConsoleKeyInfo choice)
+        {
+            return choice.Key == ConsoleKey.Escape;
         }
     }
 }
