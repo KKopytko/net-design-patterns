@@ -18,6 +18,7 @@ namespace Patterns
                     !eType.IsAbstract &&
                     eType.GetInterfaces().Contains(typeof(IRunnableExample)))
                 .Select(e => Activator.CreateInstance(e) as IRunnableExample)
+                .OrderBy(e => e.GetType().Name)
                 .Select((example, index) => new {index, example})
                 .ToDictionary(x => x.index + 1, x => x.example);
         }
