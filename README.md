@@ -35,4 +35,4 @@ Select example:
 
 You can pick any of the above numbers to run the example. Escape key exits the program.
 
-Examples are detected in the code automatically at the start of the program. Reflection detects all classes that implement `IRunnableExample` interface. It's easy to quickly add new examples.
+Examples are detected in the code automatically at the start of the program. Reflection detects all classes that inherit `RunnableExample` abstract class. It's easy to quickly add new examples.
