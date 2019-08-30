@@ -1,10 +1,8 @@
 namespace Patterns.Examples.Observer
 {
-    public class ObserverExample : IRunnableExample
+    class ObserverExample : RunnableExample
     {
-        public string Name => "Observer";
-
-        public void Run()
+        public override void Run()
         {
             var station = new RoofStation("SR1WXZ", 5327.37, 1432.46);
 

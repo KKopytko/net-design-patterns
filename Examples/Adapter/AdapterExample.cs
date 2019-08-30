@@ -2,11 +2,9 @@ using System;
 
 namespace Patterns.Examples.Adapter
 {
-    public class AdapterExample : IRunnableExample
+    class AdapterExample : RunnableExample
     {
-        public string Name => "Adapter";
-
-        public void Run()
+        public override void Run()
         {
             WorkPlanner planner = new AdvancedWorkPlanner();
             planner.Add(new DateTime(2019, 05, 02));

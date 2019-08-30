@@ -2,11 +2,9 @@ using System;
 
 namespace Patterns.Examples.Facade
 {
-    public class FacadeExample : IRunnableExample
+    class FacadeExample : RunnableExample
     {
-        public string Name => "Facade";
-
-        public void Run()
+        public override void Run()
         {
             var product = new Product("Fish", 30, 6.55M);
 

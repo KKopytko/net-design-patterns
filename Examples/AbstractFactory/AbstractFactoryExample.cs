@@ -1,10 +1,8 @@
 namespace Patterns.Examples.AbstractFactory
 {
-    class AbstractFactoryExample : IRunnableExample
+    class AbstractFactoryExample : RunnableExample
     {
-        public string Name => "Abstract factory";
-
-        public void Run()
+        public override void Run()
         {
             BMWFactory factory = new E36();
             Order order = new Order(factory);

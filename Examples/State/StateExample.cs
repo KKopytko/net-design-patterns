@@ -1,10 +1,8 @@
 namespace Patterns.Examples.State
 {
-    class StateExample : IRunnableExample
+    class StateExample : RunnableExample
     {
-        public string Name => "State";
-
-        public void Run()
+        public override void Run()
         {
             var dam = new Dam("Zapora Porabka (49.48.26N 19.12.07E)");
 

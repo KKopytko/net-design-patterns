@@ -2,11 +2,9 @@ using System;
 
 namespace Patterns.Examples.Singleton
 {
-    public class SingletonExample : IRunnableExample
+    class SingletonExample : RunnableExample
     {
-        public string Name => "Singleton";
-
-        public void Run()
+        public override void Run()
         {
             var loggerA = MultiLogger.GetLogger();
             var loggerB = MultiLogger.GetLogger();

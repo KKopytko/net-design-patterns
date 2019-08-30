@@ -1,10 +1,8 @@
 namespace Patterns.Examples.Decorator
 {
-    public class DecoratorExample : IRunnableExample
+    class DecoratorExample : RunnableExample
     {
-        public string Name => "Decorator";
-
-        public void Run()
+        public override void Run()
         {
             var book = new Book("Jonas", "Deep space", 3);
             var video = new Video("Andrej Jasky", "Final wood", 240, 7);

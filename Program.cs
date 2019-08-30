@@ -8,7 +8,7 @@ namespace Patterns
 {
     class Program
     {
-        private static readonly IDictionary<int, IRunnableExample> examples;
+        private static readonly IDictionary<int, RunnableExample> examples;
 
         static Program()
         {
@@ -16,8 +16,8 @@ namespace Patterns
                 .GetTypes()
                 .Where(eType => eType.IsClass &&
                     !eType.IsAbstract &&
-                    eType.GetInterfaces().Contains(typeof(IRunnableExample)))
-                .Select(e => Activator.CreateInstance(e) as IRunnableExample)
+                    eType.IsSubclassOf(typeof(RunnableExample)))
+                .Select(e => Activator.CreateInstance(e) as RunnableExample)
                 .OrderBy(e => e.GetType().Name)
                 .Select((example, index) => new {index, example})
                 .ToDictionary(x => x.index + 1, x => x.example);
@@ -64,14 +64,14 @@ namespace Patterns
             return Console.ReadKey(true);
         }
 
-        private static bool GetExample(ConsoleKeyInfo choice, out IRunnableExample example)
+        private static bool GetExample(ConsoleKeyInfo choice, out RunnableExample example)
         {
             var intChoice = (int)char.GetNumericValue(choice.KeyChar);
             
             return examples.TryGetValue(intChoice, out example);
         }
 
-        private static void RunExample(IRunnableExample example)
+        private static void RunExample(RunnableExample example)
         {
             Console.Clear();
             Console.WriteLine($"=== {example.Name} ===\n");
